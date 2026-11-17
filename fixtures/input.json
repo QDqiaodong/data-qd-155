@@ -1,0 +1,25 @@
+{
+  "servers": 2,
+  "jobs": [
+    {
+      "id": "A",
+      "arrival": 0,
+      "service": 5
+    },
+    {
+      "id": "B",
+      "arrival": 0,
+      "service": 2
+    },
+    {
+      "id": "C",
+      "arrival": 1,
+      "service": 3
+    },
+    {
+      "id": "D",
+      "arrival": 2,
+      "service": 1
+    }
+  ]
+}
