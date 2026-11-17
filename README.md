@@ -34,3 +34,28 @@ cli.py 衔接数据链路。fixtures 为明确自制样例，代码与样例采�
 每单分给可用时刻最早的服务台，同可用时刻按server编号；start=max(arrival,server_ready)，非抢占服务。若多个服务台在到达前已经空闲，选择空闲最早者。零时长作业合法且仍按上述顺序处理。
 输出每单start/finish/wait/server及平均/最长等待，server busy和利用率。观测范围从首到达到最后完成，不把此前空闲计入；无作业/零范围利用率为null。样例A[0,5)台0、B[0,2)台1、C[2,5)台1、D[5,6)台0；平均等待1、最长3，利用率1和5/6。
 无随机到达推断、放弃、优先抢占、路由网络、排班窗口或真实服务控制。这是有明确到达数据的离线运营分析，不以泊松或稳态假设代替观测。
+
+## 滚动派工工作台 queue-planner
+
+在 FIFO 回放之外新增持久化的滚动派工工作台，命令为
+`python -m queue_planner.cli {init,apply,plan}`，仅用 Python 标准库与 SQLite。
+它把待处理/运行中/已完成作业分开保存，原子接收 `load`/`observe`/`start`
+请求，并发布可撤销重排的准时接单建议。请求按 `request_id` 幂等、按
+`expected_revision` 做乐观并发控制，错误退出码 2；规划器对最多 12 个待处理
+作业、1..3 台做精确三级联合优化（value、等待、id 排序元组），不复用 FIFO
+最早空闲台算法。完整字段、事务边界、现场职责（预测释放 vs 实际完工）与求解/
+剪枝依据见 [queue-planner 契约](docs/planner-contract.md)。
+
+```sh
+PYTHONPATH=src python3 -m queue_planner.cli init   --db run/wb.sqlite --source init.json
+PYTHONPATH=src python3 -m queue_planner.cli apply  --db run/wb.sqlite --source request.json
+PYTHONPATH=src python3 -m queue_planner.cli plan   --db run/wb.sqlite --output run/plan.json
+```
+
+`tests/planner_oracle.py` 是独立于生产 DP 的穷举 oracle；
+`tests/test_exact_planner.py` 用它做小规模三级目标比对，覆盖同价值不同子集、
+稀缺台抢占、为未来高价值作业故意空闲、零时长边界、贪心会输的自制 fixture 以及
+平移到 10^12 附近后相对方案不变。`tests/test_lifecycle.py` 覆盖重开持久化、
+预测到点不自动完工、实际完工后重规划、零单同 tick 续开工、过期 start 拒绝与
+两进程写竞争。
+
