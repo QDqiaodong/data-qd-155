@@ -1,0 +1,77 @@
+{
+  "horizon": 60,
+  "calendars": [
+    {
+      "id": "desk-1",
+      "period": 10,
+      "windows": [
+        [2, 6],
+        [2, 4],
+        [8, 10]
+      ],
+      "exceptions": [
+        {"id": "extra-open", "kind": "open", "from_tick": 12, "to_tick": 14},
+        {"id": "repair", "kind": "closed", "from_tick": 25, "to_tick": 33},
+        {"id": "open-under-repair", "kind": "open", "from_tick": 28, "to_tick": 30}
+      ]
+    },
+    {
+      "id": "night-only",
+      "period": 12,
+      "windows": [],
+      "exceptions": [
+        {"id": "one-off-open", "kind": "open", "from_tick": 40, "to_tick": 44}
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-alpha",
+      "calendar": "desk-1",
+      "opened_at": 0,
+      "budget": 9,
+      "pauses": [
+        {"id": "hold-a", "from_tick": 8, "to_tick": 14},
+        {"id": "hold-b", "from_tick": 13, "to_tick": 20}
+      ],
+      "checkpoints": [
+        {"id": "cp-late", "at_tick": 50},
+        {"id": "cp-start", "at_tick": 0},
+        {"id": "cp-mid", "at_tick": 24},
+        {"id": "cp-during-repair", "at_tick": 30}
+      ]
+    },
+    {
+      "id": "case-beta",
+      "calendar": "desk-1",
+      "opened_at": 5,
+      "budget": 4,
+      "pauses": [],
+      "checkpoints": [
+        {"id": "b1", "at_tick": 5},
+        {"id": "b2", "at_tick": 40}
+      ]
+    },
+    {
+      "id": "case-gamma",
+      "calendar": "night-only",
+      "opened_at": 0,
+      "budget": 0,
+      "pauses": [],
+      "checkpoints": [
+        {"id": "g0", "at_tick": 0},
+        {"id": "g1", "at_tick": 60}
+      ]
+    },
+    {
+      "id": "case-delta",
+      "calendar": "night-only",
+      "opened_at": 30,
+      "budget": 6,
+      "pauses": [
+        {"id": "freeze", "from_tick": 42, "to_tick": 50}
+      ],
+      "checkpoints": []
+    }
+  ]
+}

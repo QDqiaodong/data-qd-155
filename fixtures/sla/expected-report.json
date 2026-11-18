@@ -1,0 +1,97 @@
+{
+  "cases": [
+    {
+      "budget": 9,
+      "calendar": "desk-1",
+      "checkpoints": [
+        {
+          "at_tick": 30,
+          "elapsed": 7,
+          "id": "cp-during-repair",
+          "met": false,
+          "remaining": 2
+        },
+        {
+          "at_tick": 50,
+          "elapsed": 18,
+          "id": "cp-late",
+          "met": true,
+          "remaining": 0
+        },
+        {
+          "at_tick": 24,
+          "elapsed": 6,
+          "id": "cp-mid",
+          "met": false,
+          "remaining": 3
+        },
+        {
+          "at_tick": 0,
+          "elapsed": 0,
+          "id": "cp-start",
+          "met": false,
+          "remaining": 9
+        }
+      ],
+      "due": 35,
+      "id": "case-alpha",
+      "opened_at": 0
+    },
+    {
+      "budget": 4,
+      "calendar": "desk-1",
+      "checkpoints": [
+        {
+          "at_tick": 5,
+          "elapsed": 0,
+          "id": "b1",
+          "met": false,
+          "remaining": 4
+        },
+        {
+          "at_tick": 40,
+          "elapsed": 17,
+          "id": "b2",
+          "met": true,
+          "remaining": 0
+        }
+      ],
+      "due": 13,
+      "id": "case-beta",
+      "opened_at": 5
+    },
+    {
+      "budget": 6,
+      "calendar": "night-only",
+      "checkpoints": [],
+      "due": null,
+      "id": "case-delta",
+      "opened_at": 30
+    },
+    {
+      "budget": 0,
+      "calendar": "night-only",
+      "checkpoints": [
+        {
+          "at_tick": 0,
+          "elapsed": 0,
+          "id": "g0",
+          "met": true,
+          "remaining": 0
+        },
+        {
+          "at_tick": 60,
+          "elapsed": 4,
+          "id": "g1",
+          "met": true,
+          "remaining": 0
+        }
+      ],
+      "due": 0,
+      "id": "case-gamma",
+      "opened_at": 0
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "e6b9cc3d2e025e2eb02731ae98302152677425023a5e93f7137074b621db7547"
+}

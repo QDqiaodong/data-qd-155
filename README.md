@@ -15,6 +15,7 @@ python3 -m venv .venv
 .venv/bin/queue-replay --source fixtures/input.json --output run/report.json
 .venv/bin/queue-cost --source fixtures/cost/source.json --output run/cost.json
 .venv/bin/queue-reconcile --source fixtures/reconcile/source.json --output run/reconcile.json
+.venv/bin/queue-sla --source fixtures/sla/source.json --output run/sla.json
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
@@ -172,3 +173,34 @@ PYTHONPATH=src python3 -m queue_identity.cli \
 分裂/再合并、巨大时间跨度、交错失效）。既有 `queue-replay`、
 `queue-planner`、`queue-observe`、`queue-cost`、`queue-reconcile` 命令
 与结果保持不变。
+
+## 营业时间口径 SLA 计时 queue-sla
+
+面向服务中心 SLA 核算的命令 `python -m queue_sla.cli --source SLA.json
+--output REPORT.json`：给定周期营业日历（周期原点固定为 tick 0，窗口可
+重叠/相邻/重复并按并集处理）、绝对时间的 `open`/`closed` 例外（closed
+始终优先）与每单可交叠、可跨非营业时段的暂停并集，输出每个检查时点实际
+消耗的营业 tick、`remaining=max(0,budget-elapsed)`、布尔 `met` 与预算首次
+达到的最早整数 `due`（不存在为 `null`，`budget=0` 时为 `opened_at`）。
+有效营业集合为 `(P ∪ O) − C`；工单累计是集合测度
+`|E| − |E ∩ pauses|`，累计不会为负，闭店与暂停重叠只扣一次，暂停内的
+特殊开门不计时间，绝不用暂停或例外总长度直接冲减墙钟时长。
+
+```sh
+PYTHONPATH=src python3 -m queue_sla.cli \
+    --source fixtures/sla/source.json --output run/sla.json
+```
+
+计数采用集合容斥的**闭式**前缀：周期部分按整周期加余数窗口二分，例外与
+暂停只作为有限加权区间并集，周期集合 P 仅通过跨度权重出现而从不物化，
+因此 `period=1`、`horizon=10^12` 也不逐 tick、不逐周期展开；`due` 在同一
+前缀表示上二分反求，计数与到期共用同一集合口径。字段、身份命名空间、
+容斥恒等式、复杂度与错误行为见 [queue-sla 契约](docs/sla-contract.md)。
+`tests/sla_oracle.py` 是独立逐 tick oracle（不导入生产代码）；
+`tests/test_sla.py` 覆盖闭店/暂停部分与完全重叠、特殊开门被暂停覆盖、
+同日历两单暂停隔离、预算恰在营业段右端耗尽、空营业集合、budget=0、
+horizon 处到期、周期跨界、乱序重叠窗口与例外、period=1 与 10^12 跨度的
+不展开压力测试、可证明构造大例，以及重复身份、bool/非法未使用例外、
+超 8MB、同路径/硬链接/符号链接与发布失败旧报告保留。既有
+`queue-replay`、`queue-planner`、`queue-observe`、`queue-cost`、
+`queue-reconcile`、`queue-identity` 命令与结果保持不变。

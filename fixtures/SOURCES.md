@@ -19,3 +19,10 @@ fixed/ambiguous/unmatched 三态分类；无真实账单、收款或金额数据
 的同人关联与十二个乱序时点查询），`expected-report.json` 由本仓
 `queue-identity` 生成，覆盖桥接隔离与恢复、边界生效/失效、平行关联、
 孤立记录与空字段；无真实个人、联系方式或客户数据。
+
+`fixtures/sla/` 为原创虚构合成营业时间 SLA 样例：`source.json` 是
+`queue-sla` 源文档（两个虚构营业日历，含重叠/相邻周期窗口、open/closed
+例外与 closed 优先，四个虚构工单含交叠暂停、空检查点、budget=0 与不可
+到期情形），`expected-report.json` 由本仓 `queue-sla` 生成并与独立逐
+tick oracle 一致，覆盖闭店与暂停重叠、特殊开门被暂停覆盖、最早到期
+端点与剩余预算；无真实门店、合同、人员或 SLA 数据。
