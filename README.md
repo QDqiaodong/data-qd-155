@@ -13,6 +13,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install --no-build-isolation --no-deps .
 .venv/bin/python -m pip check
 .venv/bin/queue-replay --source fixtures/input.json --output run/report.json
+.venv/bin/queue-cost --source fixtures/cost/source.json --output run/cost.json
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
@@ -84,3 +85,29 @@ PYTHONPATH=src python3 -m queue_observe.cli \
 抵消、同台次序收紧、三环矛盾、未查询作业约束、参考 clock 非首项、负 tick/
 负 offset、真实时间上界、零时长/等时边界、空事件与巨大 clock 范围。既有
 `queue-replay`、`queue-planner` 命令与结果保持不变。
+
+## 工时费用核算 queue-cost
+
+面向服务中心财务的精确核算命令 `python -m queue_cost.cli --source COST.json
+--output REPORT.json`：把每个已完成服务区间按合同有效费率边界切成左闭右开
+子段，以 `Fraction` 精确计算每段与每单费用，仅在**账单总额**处做一次
+“最接近、恰半向上”的舍入。同一 `(service_code, server)` 的费率时段不得重叠；
+工作区间必须被连续覆盖，空档拒绝而不外推；工作开始恰在切换点只用新费率，
+结束恰在切换点不用新费率。报告含 `schema_version=1`、输入原字节 SHA256、
+逐工作单 `rate_id/from_tick/to_tick/exact_minor_units` 子段与精确合计，以及按
+`invoice_id` 汇总（含 `rounded_minor_units`）的账单。标识符、整数、币种与
+8MB/重复键/NaN/同路径/符号链接等安全边界沿用既有命令。
+
+```sh
+PYTHONPATH=src python3 -m queue_cost.cli \
+    --source fixtures/cost/source.json --output run/cost.json
+```
+
+字段、Fraction 规范形式、半开区间、舍入规则与手算例子见
+[queue-cost 契约](docs/cost-contract.md)。`tests/cost_oracle.py` 是独立
+有理数 oracle（不导入生产核算代码）；`tests/test_cost.py` 覆盖跨边界切分、
+恰好落在边界、零时长、零费率、大分子/分母、超大跨度、账单恰半向上与
+“提前逐单舍入会改变总额”的反例、空档/重叠/错台/错码/身份冲突/混币、
+空输入、字段错误、重复键、超 8MB、路径与符号链接安全、旧输出保留及输入
+重排字节稳定。既有 `queue-replay`、`queue-planner`、`queue-observe` 命令与
+结果保持不变。

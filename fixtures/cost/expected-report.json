@@ -1,0 +1,101 @@
+{
+  "invoices": [
+    {
+      "currency": "USD",
+      "exact_minor_units": "25/2",
+      "invoice_id": "INV1",
+      "rounded_minor_units": 13
+    },
+    {
+      "currency": "EUR",
+      "exact_minor_units": "5/4",
+      "invoice_id": "INV2",
+      "rounded_minor_units": 1
+    },
+    {
+      "currency": "USD",
+      "exact_minor_units": "0",
+      "invoice_id": "INV3",
+      "rounded_minor_units": 0
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "4a12c0592839583a1fe9bc4ffe2dc6989f75e1ad0b9343428733e813bfce9b14",
+  "work_orders": [
+    {
+      "currency": "USD",
+      "exact_minor_units": "25/3",
+      "invoice_id": "INV1",
+      "segments": [
+        {
+          "exact_minor_units": "10/3",
+          "from_tick": 0,
+          "rate_id": "R-A",
+          "to_tick": 10
+        },
+        {
+          "exact_minor_units": "5",
+          "from_tick": 10,
+          "rate_id": "R-B",
+          "to_tick": 20
+        }
+      ],
+      "work_id": "W1"
+    },
+    {
+      "currency": "USD",
+      "exact_minor_units": "25/6",
+      "invoice_id": "INV1",
+      "segments": [
+        {
+          "exact_minor_units": "5/3",
+          "from_tick": 5,
+          "rate_id": "R-A",
+          "to_tick": 10
+        },
+        {
+          "exact_minor_units": "5/2",
+          "from_tick": 10,
+          "rate_id": "R-B",
+          "to_tick": 15
+        }
+      ],
+      "work_id": "W2"
+    },
+    {
+      "currency": null,
+      "exact_minor_units": "0",
+      "invoice_id": "INV1",
+      "segments": [],
+      "work_id": "W3"
+    },
+    {
+      "currency": "EUR",
+      "exact_minor_units": "5/4",
+      "invoice_id": "INV2",
+      "segments": [
+        {
+          "exact_minor_units": "5/4",
+          "from_tick": 0,
+          "rate_id": "R-C",
+          "to_tick": 5
+        }
+      ],
+      "work_id": "W4"
+    },
+    {
+      "currency": "USD",
+      "exact_minor_units": "0",
+      "invoice_id": "INV3",
+      "segments": [
+        {
+          "exact_minor_units": "0",
+          "from_tick": 20,
+          "rate_id": "R-E",
+          "to_tick": 25
+        }
+      ],
+      "work_id": "W5"
+    }
+  ]
+}

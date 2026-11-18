@@ -1,0 +1,97 @@
+{
+  "servers": 2,
+  "work_intervals": [
+    {
+      "work_id": "W1",
+      "service_code": "S",
+      "server": 0,
+      "start_tick": 0,
+      "finish_tick": 20,
+      "invoice_id": "INV1"
+    },
+    {
+      "work_id": "W2",
+      "service_code": "S",
+      "server": 0,
+      "start_tick": 5,
+      "finish_tick": 15,
+      "invoice_id": "INV1"
+    },
+    {
+      "work_id": "W3",
+      "service_code": "S",
+      "server": 0,
+      "start_tick": 10,
+      "finish_tick": 10,
+      "invoice_id": "INV1"
+    },
+    {
+      "work_id": "W4",
+      "service_code": "S",
+      "server": 1,
+      "start_tick": 0,
+      "finish_tick": 5,
+      "invoice_id": "INV2"
+    },
+    {
+      "work_id": "W5",
+      "service_code": "T",
+      "server": 0,
+      "start_tick": 20,
+      "finish_tick": 25,
+      "invoice_id": "INV3"
+    }
+  ],
+  "rates": [
+    {
+      "rate_id": "R-A",
+      "service_code": "S",
+      "server": 0,
+      "from_tick": 0,
+      "to_tick": 10,
+      "currency": "USD",
+      "minor_units_num": 1,
+      "minor_units_den": 3
+    },
+    {
+      "rate_id": "R-B",
+      "service_code": "S",
+      "server": 0,
+      "from_tick": 10,
+      "to_tick": 20,
+      "currency": "USD",
+      "minor_units_num": 1,
+      "minor_units_den": 2
+    },
+    {
+      "rate_id": "R-C",
+      "service_code": "S",
+      "server": 1,
+      "from_tick": 0,
+      "to_tick": 20,
+      "currency": "EUR",
+      "minor_units_num": 1,
+      "minor_units_den": 4
+    },
+    {
+      "rate_id": "R-D",
+      "service_code": "T",
+      "server": 0,
+      "from_tick": 0,
+      "to_tick": 20,
+      "currency": "USD",
+      "minor_units_num": 1,
+      "minor_units_den": 1
+    },
+    {
+      "rate_id": "R-E",
+      "service_code": "T",
+      "server": 0,
+      "from_tick": 20,
+      "to_tick": 30,
+      "currency": "USD",
+      "minor_units_num": 0,
+      "minor_units_den": 1
+    }
+  ]
+}
