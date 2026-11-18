@@ -59,3 +59,28 @@ PYTHONPATH=src python3 -m queue_planner.cli plan   --db run/wb.sqlite --output r
 预测到点不自动完工、实际完工后重规划、零单同 tick 续开工、过期 start 拒绝与
 两进程写竞争。
 
+## 跨设备时钟重建 queue-observe
+
+只读运营复盘命令 `python -m queue_observe.cli --source LOG.json --baseline
+REPLAY.json --output REPORT.json`，在 FIFO 回放报告之外读取实际到达/开工/完工
+日志，输出每单 wait/service/sojourn 在全部约束共同可行域上的紧整数区间、达到
+区间端点的完整 clock→offset 赋值见证，以及与 baseline 预测的偏差。跨设备日志
+共享未知整数 offset，约束包括 clock 界、事件真实时间 [0,10^12]、跨时钟标定、
+作业生命周期和同台 service_seq 相邻次序；求解用差分约束最短路（不逐 tick、
+不枚举 offset 组合），无解时给出闭合负环证据。
+
+```sh
+PYTHONPATH=src python3 -m queue_observe.cli \
+    --source fixtures/observe/observation-log.json \
+    --baseline fixtures/observe/baseline.json \
+    --output run/observe.json
+```
+
+完整字段、constraint_id、见证与负环定义见
+[queue-observe 契约](docs/observe-contract.md)。
+
+`tests/observe_oracle.py` 是独立小整数穷举 oracle（不导入生产可行性代码），
+`tests/test_observe.py` 用它核验查询区间、端点见证与矛盾环，并覆盖跨 clock
+抵消、同台次序收紧、三环矛盾、未查询作业约束、参考 clock 非首项、负 tick/
+负 offset、真实时间上界、零时长/等时边界、空事件与巨大 clock 范围。既有
+`queue-replay`、`queue-planner` 命令与结果保持不变。

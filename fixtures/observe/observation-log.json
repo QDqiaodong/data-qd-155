@@ -1,0 +1,33 @@
+{
+  "reference_clock": "REF",
+  "clocks": [
+    {"id": "REF", "min_offset": 0, "max_offset": 0},
+    {"id": "EDGE_A", "min_offset": -2, "max_offset": 2},
+    {"id": "EDGE_B", "min_offset": -30, "max_offset": 30},
+    {"id": "EDGE_C", "min_offset": -2, "max_offset": 2}
+  ],
+  "events": [
+    {"event_id": "ev-a-arr", "job": "A", "kind": "arrival", "clock": "REF", "tick": 0, "server": null, "service_seq": null},
+    {"event_id": "ev-a-start", "job": "A", "kind": "start", "clock": "EDGE_A", "tick": 0, "server": 0, "service_seq": 0},
+    {"event_id": "ev-a-fin", "job": "A", "kind": "finish", "clock": "EDGE_A", "tick": 5, "server": 0, "service_seq": 0},
+    {"event_id": "ev-b-arr", "job": "B", "kind": "arrival", "clock": "EDGE_B", "tick": -18, "server": null, "service_seq": null},
+    {"event_id": "ev-b-start", "job": "B", "kind": "start", "clock": "EDGE_C", "tick": 0, "server": 1, "service_seq": 0},
+    {"event_id": "ev-b-fin", "job": "B", "kind": "finish", "clock": "EDGE_C", "tick": 1, "server": 1, "service_seq": 0},
+    {"event_id": "ev-c-arr", "job": "C", "kind": "arrival", "clock": "REF", "tick": 1, "server": null, "service_seq": null},
+    {"event_id": "ev-c-start", "job": "C", "kind": "start", "clock": "REF", "tick": 3, "server": 1, "service_seq": 1},
+    {"event_id": "ev-c-fin", "job": "C", "kind": "finish", "clock": "EDGE_B", "tick": -9, "server": 1, "service_seq": 1},
+    {"event_id": "ev-d-arr", "job": "D", "kind": "arrival", "clock": "EDGE_B", "tick": -4, "server": null, "service_seq": null},
+    {"event_id": "ev-d-start", "job": "D", "kind": "start", "clock": "EDGE_A", "tick": 20, "server": 0, "service_seq": 1},
+    {"event_id": "ev-d-fin", "job": "D", "kind": "finish", "clock": "EDGE_A", "tick": 21, "server": 0, "service_seq": 1}
+  ],
+  "calibrations": [
+    {"id": "cal-a", "from_event": "ev-a-start", "to_event": "ev-b-start", "min_delta": 1, "max_delta": 4},
+    {"id": "cal-c", "from_event": "ev-c-start", "to_event": "ev-c-fin", "min_delta": 8, "max_delta": 12}
+  ],
+  "queries": [
+    {"id": "qa-service", "job": "A", "metric": "service"},
+    {"id": "qb-wait", "job": "B", "metric": "wait"},
+    {"id": "qc-sojourn", "job": "C", "metric": "sojourn"},
+    {"id": "qd-wait", "job": "D", "metric": "wait"}
+  ]
+}
