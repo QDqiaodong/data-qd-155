@@ -13,3 +13,9 @@
 `expected-report.json` 由本仓 `queue-reconcile` 生成，覆盖账单级恰半向上
 舍入、容差边界、收款争用、零时长 null 币种账单、空准入列表与
 fixed/ambiguous/unmatched 三态分类；无真实账单、收款或金额数据。
+
+`fixtures/identity/` 为原创虚构合成客户主数据样例：`source.json` 是
+`queue-identity` 源文档（三个虚构来源、五条虚构客户记录、四条带有效期
+的同人关联与十二个乱序时点查询），`expected-report.json` 由本仓
+`queue-identity` 生成，覆盖桥接隔离与恢复、边界生效/失效、平行关联、
+孤立记录与空字段；无真实个人、联系方式或客户数据。

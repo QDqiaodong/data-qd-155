@@ -140,3 +140,35 @@ PYTHONPATH=src python3 -m queue_reconcile.cli \
 命名空间、10^36 巨大金额、账单级舍入改变配对、300×300 最大规模非唯
 一最优、输入重排稳定与旧报告保留。既有 `queue-replay`、`queue-planner`、
 `queue-observe`、`queue-cost` 命令与结果保持不变。
+
+## 多来源客户主数据历史身份解析 queue-identity
+
+面向服务中心 CRM、预约和热线导出的时点身份解析命令 `python -m
+queue_identity.cli --source IDENTITY.json --output REPORT.json`：静态
+客户记录保留 `(source, key)` 双分量身份（最多 64 来源、10000 记录），
+人工确认的无向同人关联带 `[from_tick, to_tick)` 有效期（最多 30000
+条），时点查询（最多 30000 个，tick 0..10^12）取该时刻有效关联的连
+通分量，输出分量最小客户键（纯字符串元组序，与优先级无关）、成员
+数、同源冲突隔离状态（`conflict_sources` 全量列出）与逐字段主数据血
+缘（`display_name/email/phone` 各自按 `(priority, source, key)` 升序
+从非空成员中择一）。算法为离线时间段树加分组完整治理状态的可回滚
+并查集：不逐 tick 展开、不逐查询重扫关联或遍历分量，分裂与相邻时
+间分支间完整恢复成员数、最小键、来源计数、冲突掩码与字段血缘，而
+非只恢复连通关系。
+
+```sh
+PYTHONPATH=src python3 -m queue_identity.cli \
+    --source fixtures/identity/source.json --output run/identity.json
+```
+
+字段、隔离与血缘语义、状态保存/恢复论据、复杂度与错误行为见
+[queue-identity 契约](docs/identity-contract.md)。
+`tests/identity_oracle.py` 是独立逐查询图遍历 oracle（不导入生产身份
+引擎）；`tests/test_identity.py` 覆盖桥接前干净、桥接期间同源冲突、
+桥接失效后恢复、边界生效/失效与同 tick 交接、平行关联与环中替代路
+径、跨源同键与分隔符碰撞、优先级并列、三字段分属三源、多空字段与孤
+立记录、多冲突来源、零关联/零查询/空 records、非法未查询关联，以及
+64 来源、10000 记录、29996 关联、30000 查询的可证明构造大例（多次
+分裂/再合并、巨大时间跨度、交错失效）。既有 `queue-replay`、
+`queue-planner`、`queue-observe`、`queue-cost`、`queue-reconcile` 命令
+与结果保持不变。

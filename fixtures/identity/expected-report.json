@@ -1,0 +1,366 @@
+{
+  "queries": [
+    {
+      "at_tick": 500,
+      "canonical_record": [
+        "CRM",
+        "c-100"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "Rui Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": null
+      },
+      "id": "q-01",
+      "member_count": 1,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 1500,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "R. Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "+81-90-0000-0000"
+        }
+      },
+      "id": "q-02",
+      "member_count": 2,
+      "record": [
+        "APPT",
+        "a-200"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 2500,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [
+        "CRM"
+      ],
+      "fields": null,
+      "id": "q-03",
+      "member_count": 4,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "quarantined"
+    },
+    {
+      "at_tick": 3500,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "R. Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "+81-90-0000-0000"
+        }
+      },
+      "id": "q-04",
+      "member_count": 3,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 3000,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [
+        "CRM"
+      ],
+      "fields": null,
+      "id": "q-05",
+      "member_count": 4,
+      "record": [
+        "HOTLINE",
+        "h-300"
+      ],
+      "status": "quarantined"
+    },
+    {
+      "at_tick": 4000,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "R. Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "+81-90-0000-0000"
+        }
+      },
+      "id": "q-06",
+      "member_count": 2,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 5000,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "R. Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "+81-90-0000-0000"
+        }
+      },
+      "id": "q-07",
+      "member_count": 2,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 4500,
+      "canonical_record": [
+        "CRM",
+        "c-101"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "CRM",
+            "c-101"
+          ],
+          "value": "Rui T."
+        },
+        "email": null,
+        "phone": null
+      },
+      "id": "q-08",
+      "member_count": 1,
+      "record": [
+        "CRM",
+        "c-101"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 3000,
+      "canonical_record": [
+        "APPT",
+        "a-201"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "APPT",
+            "a-201"
+          ],
+          "value": "Solo Person"
+        },
+        "email": null,
+        "phone": null
+      },
+      "id": "q-09",
+      "member_count": 1,
+      "record": [
+        "APPT",
+        "a-201"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 5500,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "R. Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": {
+          "record": [
+            "APPT",
+            "a-200"
+          ],
+          "value": "+81-90-0000-0000"
+        }
+      },
+      "id": "q-10",
+      "member_count": 2,
+      "record": [
+        "APPT",
+        "a-200"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 6000,
+      "canonical_record": [
+        "CRM",
+        "c-100"
+      ],
+      "conflict_sources": [],
+      "fields": {
+        "display_name": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "Rui Tanaka"
+        },
+        "email": {
+          "record": [
+            "CRM",
+            "c-100"
+          ],
+          "value": "r.tanaka@example.invalid"
+        },
+        "phone": null
+      },
+      "id": "q-11",
+      "member_count": 1,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "clean"
+    },
+    {
+      "at_tick": 2500,
+      "canonical_record": [
+        "APPT",
+        "a-200"
+      ],
+      "conflict_sources": [
+        "CRM"
+      ],
+      "fields": null,
+      "id": "q-12",
+      "member_count": 4,
+      "record": [
+        "CRM",
+        "c-100"
+      ],
+      "status": "quarantined"
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "02531fd6fa96bb537d3451bb057c45ab5b4e23092448f568ead991dd6397f4c5"
+}

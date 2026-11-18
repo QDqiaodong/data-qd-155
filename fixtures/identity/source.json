@@ -1,0 +1,205 @@
+{
+  "links": [
+    {
+      "from_tick": 1000,
+      "id": "L-main-1",
+      "left": [
+        "CRM",
+        "c-100"
+      ],
+      "right": [
+        "APPT",
+        "a-200"
+      ],
+      "to_tick": 5000
+    },
+    {
+      "from_tick": 2000,
+      "id": "L-main-2",
+      "left": [
+        "APPT",
+        "a-200"
+      ],
+      "right": [
+        "HOTLINE",
+        "h-300"
+      ],
+      "to_tick": 4000
+    },
+    {
+      "from_tick": 2500,
+      "id": "L-bridge",
+      "left": [
+        "CRM",
+        "c-101"
+      ],
+      "right": [
+        "HOTLINE",
+        "h-300"
+      ],
+      "to_tick": 3500
+    },
+    {
+      "from_tick": 4500,
+      "id": "L-parallel",
+      "left": [
+        "CRM",
+        "c-100"
+      ],
+      "right": [
+        "APPT",
+        "a-200"
+      ],
+      "to_tick": 6000
+    }
+  ],
+  "queries": [
+    {
+      "at_tick": 3000,
+      "id": "q-09",
+      "record": [
+        "APPT",
+        "a-201"
+      ]
+    },
+    {
+      "at_tick": 2500,
+      "id": "q-03",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    },
+    {
+      "at_tick": 5000,
+      "id": "q-07",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    },
+    {
+      "at_tick": 500,
+      "id": "q-01",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    },
+    {
+      "at_tick": 3000,
+      "id": "q-05",
+      "record": [
+        "HOTLINE",
+        "h-300"
+      ]
+    },
+    {
+      "at_tick": 6000,
+      "id": "q-11",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    },
+    {
+      "at_tick": 1500,
+      "id": "q-02",
+      "record": [
+        "APPT",
+        "a-200"
+      ]
+    },
+    {
+      "at_tick": 4500,
+      "id": "q-08",
+      "record": [
+        "CRM",
+        "c-101"
+      ]
+    },
+    {
+      "at_tick": 3500,
+      "id": "q-04",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    },
+    {
+      "at_tick": 5500,
+      "id": "q-10",
+      "record": [
+        "APPT",
+        "a-200"
+      ]
+    },
+    {
+      "at_tick": 4000,
+      "id": "q-06",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    },
+    {
+      "at_tick": 2500,
+      "id": "q-12",
+      "record": [
+        "CRM",
+        "c-100"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "display_name": "Rui Tanaka",
+      "email": "r.tanaka@example.invalid",
+      "key": "c-100",
+      "phone": null,
+      "source": "CRM"
+    },
+    {
+      "display_name": "R. Tanaka",
+      "email": null,
+      "key": "a-200",
+      "phone": "+81-90-0000-0000",
+      "source": "APPT"
+    },
+    {
+      "display_name": null,
+      "email": "rtanaka@example.invalid",
+      "key": "h-300",
+      "phone": "+81-90-1111-2222",
+      "source": "HOTLINE"
+    },
+    {
+      "display_name": "Rui T.",
+      "email": null,
+      "key": "c-101",
+      "phone": null,
+      "source": "CRM"
+    },
+    {
+      "display_name": "Solo Person",
+      "email": null,
+      "key": "a-201",
+      "phone": null,
+      "source": "APPT"
+    }
+  ],
+  "sources": [
+    {
+      "id": "APPT",
+      "priority": 10
+    },
+    {
+      "id": "CRM",
+      "priority": 20
+    },
+    {
+      "id": "HOTLINE",
+      "priority": 30
+    }
+  ]
+}
