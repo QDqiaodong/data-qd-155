@@ -12,5 +12,6 @@ queue-replay = "queue_replay.cli:main"
 queue-planner = "queue_planner.cli:main"
 queue-observe = "queue_observe.cli:main"
 queue-cost = "queue_cost.cli:main"
+queue-reconcile = "queue_reconcile.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]

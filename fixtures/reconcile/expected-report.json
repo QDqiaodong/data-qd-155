@@ -1,0 +1,116 @@
+{
+  "invoices": [
+    {
+      "can_be_unmatched": false,
+      "currency": "USD",
+      "invoice_id": "INV-A",
+      "possible_receipt_ids": [
+        "RCP-1",
+        "RCP-2"
+      ],
+      "rounded_minor_units": 13,
+      "status": "ambiguous"
+    },
+    {
+      "can_be_unmatched": false,
+      "currency": "EUR",
+      "invoice_id": "INV-B",
+      "possible_receipt_ids": [
+        "RCP-4"
+      ],
+      "rounded_minor_units": 20,
+      "status": "fixed"
+    },
+    {
+      "can_be_unmatched": true,
+      "currency": null,
+      "invoice_id": "INV-C",
+      "possible_receipt_ids": [],
+      "rounded_minor_units": 0,
+      "status": "unmatched"
+    },
+    {
+      "can_be_unmatched": false,
+      "currency": "USD",
+      "invoice_id": "INV-D",
+      "possible_receipt_ids": [
+        "RCP-3"
+      ],
+      "rounded_minor_units": 2,
+      "status": "fixed"
+    }
+  ],
+  "matching": [
+    {
+      "difference_minor_units": 3,
+      "invoice_id": "INV-A",
+      "receipt_id": "RCP-1"
+    },
+    {
+      "difference_minor_units": 1,
+      "invoice_id": "INV-B",
+      "receipt_id": "RCP-4"
+    },
+    {
+      "difference_minor_units": 0,
+      "invoice_id": "INV-D",
+      "receipt_id": "RCP-3"
+    }
+  ],
+  "objective": {
+    "matched_count": 3,
+    "total_difference_minor_units": 4
+  },
+  "receipts": [
+    {
+      "can_be_unmatched": true,
+      "currency": "USD",
+      "minor_units": 16,
+      "possible_invoice_ids": [
+        "INV-A"
+      ],
+      "receipt_id": "RCP-1",
+      "status": "ambiguous"
+    },
+    {
+      "can_be_unmatched": true,
+      "currency": "USD",
+      "minor_units": 16,
+      "possible_invoice_ids": [
+        "INV-A"
+      ],
+      "receipt_id": "RCP-2",
+      "status": "ambiguous"
+    },
+    {
+      "can_be_unmatched": false,
+      "currency": "USD",
+      "minor_units": 2,
+      "possible_invoice_ids": [
+        "INV-D"
+      ],
+      "receipt_id": "RCP-3",
+      "status": "fixed"
+    },
+    {
+      "can_be_unmatched": false,
+      "currency": "EUR",
+      "minor_units": 21,
+      "possible_invoice_ids": [
+        "INV-B"
+      ],
+      "receipt_id": "RCP-4",
+      "status": "fixed"
+    },
+    {
+      "can_be_unmatched": true,
+      "currency": "USD",
+      "minor_units": 2,
+      "possible_invoice_ids": [],
+      "receipt_id": "RCP-5",
+      "status": "unmatched"
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "251e7529524f7d7dc3a3ec7fe40f3dd8c15ef7a68ef21d28bf5346c4dd2be1ea"
+}

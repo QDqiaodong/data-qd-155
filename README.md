@@ -14,6 +14,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip check
 .venv/bin/queue-replay --source fixtures/input.json --output run/report.json
 .venv/bin/queue-cost --source fixtures/cost/source.json --output run/cost.json
+.venv/bin/queue-reconcile --source fixtures/reconcile/source.json --output run/reconcile.json
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
@@ -111,3 +112,31 @@ PYTHONPATH=src python3 -m queue_cost.cli \
 空输入、字段错误、重复键、超 8MB、路径与符号链接安全、旧输出保留及输入
 重排字节稳定。既有 `queue-replay`、`queue-planner`、`queue-observe` 命令与
 结果保持不变。
+
+## 跨源收款对账 queue-reconcile
+
+面向服务中心财务的对账命令 `python -m queue_reconcile.cli --source
+RECONCILE.json --output REPORT.json`：账单侧直接核算既有 queue-cost 源
+文档（不接受预计算金额），收款侧是最多 300 笔独立收款（独立命名空间、
+有限账单准入列表）。在币种一致、金额差不超过容差且准入允许的候选边
+上做一对一配对，先最大化配对数、再最小化金额差总和（任意精度整数，
+两层目标严格优先，不做权重折叠或浮点近似）。报告给出一份最优见证、
+目标值，以及每条账单/收款在**全部**两层最优方案中的可能对端集合与
+可未配对性，据此分为 fixed/ambiguous/unmatched 供人工核销；
+currency=null 的账单永远无候选、可未配对。算法为单位容量最小费用最
+大流（逐最短路增广）加零约化费用残余图强连通分量，多项式时间，不枚
+举配对方案、不按金额单位展开。
+
+```sh
+PYTHONPATH=src python3 -m queue_reconcile.cli \
+    --source fixtures/reconcile/source.json --output run/reconcile.json
+```
+
+字段、支持集语义、算法正确性论据与错误行为见
+[queue-reconcile 契约](docs/reconcile-contract.md)。
+`tests/reconcile_oracle.py` 是独立小规模枚举 oracle（不导入生产匹配代
+码）；`tests/test_reconcile.py` 覆盖非最优候选边剔除、交替换配关联歧
+义、固定与歧义共存、收款争用、零金额零容差、空侧、币种不符、同名跨
+命名空间、10^36 巨大金额、账单级舍入改变配对、300×300 最大规模非唯
+一最优、输入重排稳定与旧报告保留。既有 `queue-replay`、`queue-planner`、
+`queue-observe`、`queue-cost` 命令与结果保持不变。

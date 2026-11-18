@@ -7,3 +7,9 @@
 `fixtures/cost/` 为原创虚构合成费率与工作单：`source.json` 是 `queue-cost`
 源文档，`expected-report.json` 由本仓 `queue-cost` 生成，覆盖跨费率边界切分、
 零时长工作、零费率与账单恰半向上舍入；无真实合同、账单或金额数据。
+
+`fixtures/reconcile/` 为原创虚构合成对账样例：`source.json` 是
+`queue-reconcile` 源文档（内嵌一份 queue-cost 源与独立收款导出），
+`expected-report.json` 由本仓 `queue-reconcile` 生成，覆盖账单级恰半向上
+舍入、容差边界、收款争用、零时长 null 币种账单、空准入列表与
+fixed/ambiguous/unmatched 三态分类；无真实账单、收款或金额数据。

@@ -1,0 +1,112 @@
+{
+  "cost_source": {
+    "servers": 2,
+    "work_intervals": [
+      {
+        "work_id": "W1",
+        "service_code": "S",
+        "server": 0,
+        "start_tick": 0,
+        "finish_tick": 20,
+        "invoice_id": "INV-A"
+      },
+      {
+        "work_id": "W2",
+        "service_code": "S",
+        "server": 0,
+        "start_tick": 5,
+        "finish_tick": 15,
+        "invoice_id": "INV-A"
+      },
+      {
+        "work_id": "W3",
+        "service_code": "S",
+        "server": 1,
+        "start_tick": 0,
+        "finish_tick": 10,
+        "invoice_id": "INV-B"
+      },
+      {
+        "work_id": "W4",
+        "service_code": "S",
+        "server": 1,
+        "start_tick": 7,
+        "finish_tick": 7,
+        "invoice_id": "INV-C"
+      },
+      {
+        "work_id": "W5",
+        "service_code": "S",
+        "server": 0,
+        "start_tick": 0,
+        "finish_tick": 5,
+        "invoice_id": "INV-D"
+      }
+    ],
+    "rates": [
+      {
+        "rate_id": "R-A",
+        "service_code": "S",
+        "server": 0,
+        "from_tick": 0,
+        "to_tick": 10,
+        "currency": "USD",
+        "minor_units_num": 1,
+        "minor_units_den": 3
+      },
+      {
+        "rate_id": "R-B",
+        "service_code": "S",
+        "server": 0,
+        "from_tick": 10,
+        "to_tick": 20,
+        "currency": "USD",
+        "minor_units_num": 1,
+        "minor_units_den": 2
+      },
+      {
+        "rate_id": "R-C",
+        "service_code": "S",
+        "server": 1,
+        "from_tick": 0,
+        "to_tick": 20,
+        "currency": "EUR",
+        "minor_units_num": 2,
+        "minor_units_den": 1
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "receipt_id": "RCP-1",
+      "currency": "USD",
+      "minor_units": 16,
+      "eligible_invoices": null
+    },
+    {
+      "receipt_id": "RCP-2",
+      "currency": "USD",
+      "minor_units": 16,
+      "eligible_invoices": ["INV-A"]
+    },
+    {
+      "receipt_id": "RCP-3",
+      "currency": "USD",
+      "minor_units": 2,
+      "eligible_invoices": null
+    },
+    {
+      "receipt_id": "RCP-4",
+      "currency": "EUR",
+      "minor_units": 21,
+      "eligible_invoices": null
+    },
+    {
+      "receipt_id": "RCP-5",
+      "currency": "USD",
+      "minor_units": 2,
+      "eligible_invoices": []
+    }
+  ],
+  "tolerance_minor_units": 3
+}
