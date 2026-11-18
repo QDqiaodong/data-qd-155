@@ -1,0 +1,60 @@
+{
+  "result": {
+    "horizon_end": 6,
+    "horizon_start": 0,
+    "jobs": [
+      {
+        "arrival": 0,
+        "finish": 5,
+        "id": "A",
+        "server": 0,
+        "service": 5,
+        "start": 0,
+        "wait": 0
+      },
+      {
+        "arrival": 0,
+        "finish": 2,
+        "id": "B",
+        "server": 1,
+        "service": 2,
+        "start": 0,
+        "wait": 0
+      },
+      {
+        "arrival": 2,
+        "finish": 5,
+        "id": "C",
+        "server": 1,
+        "service": 3,
+        "start": 2,
+        "wait": 0
+      },
+      {
+        "arrival": 4,
+        "finish": 6,
+        "id": "D",
+        "server": 0,
+        "service": 1,
+        "start": 5,
+        "wait": 1
+      }
+    ],
+    "max_wait": 1,
+    "mean_wait": "1/4",
+    "servers": [
+      {
+        "busy_ticks": 6,
+        "server": 0,
+        "utilization": "1"
+      },
+      {
+        "busy_ticks": 5,
+        "server": 1,
+        "utilization": "5/6"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "source_sha256": "0423a83d84b44e8a59320313a104ddaf555a15f0fea93f422430d487c9823b9d"
+}

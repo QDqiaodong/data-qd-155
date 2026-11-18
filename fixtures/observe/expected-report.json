@@ -1,0 +1,97 @@
+{
+  "baseline_sha256": "5bc819f9dd2ea82fb6d6e11ca337c66a40387519a236934d4a3d5b1945986f8b",
+  "baseline_source_sha256": "0423a83d84b44e8a59320313a104ddaf555a15f0fea93f422430d487c9823b9d",
+  "feasible": true,
+  "log_sha256": "498e94179536bb60a9e948ad2400b1435777fff88f87849e2e004379adc26be5",
+  "queries": [
+    {
+      "delta_max": 0,
+      "delta_min": 0,
+      "id": "qa-service",
+      "job": "A",
+      "max": 5,
+      "max_offsets": {
+        "EDGE_A": 0,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "metric": "service",
+      "min": 5,
+      "min_offsets": {
+        "EDGE_A": 0,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "predicted": 5
+    },
+    {
+      "delta_max": 0,
+      "delta_min": 0,
+      "id": "qb-wait",
+      "job": "B",
+      "max": 0,
+      "max_offsets": {
+        "EDGE_A": 1,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "metric": "wait",
+      "min": 0,
+      "min_offsets": {
+        "EDGE_A": 1,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "predicted": 0
+    },
+    {
+      "delta_max": 7,
+      "delta_min": 7,
+      "id": "qc-sojourn",
+      "job": "C",
+      "max": 10,
+      "max_offsets": {
+        "EDGE_A": 1,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "metric": "sojourn",
+      "min": 10,
+      "min_offsets": {
+        "EDGE_A": 1,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "predicted": 3
+    },
+    {
+      "delta_max": 4,
+      "delta_min": 3,
+      "id": "qd-wait",
+      "job": "D",
+      "max": 5,
+      "max_offsets": {
+        "EDGE_A": 1,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "metric": "wait",
+      "min": 4,
+      "min_offsets": {
+        "EDGE_A": 0,
+        "EDGE_B": 20,
+        "EDGE_C": 2,
+        "REF": 0
+      },
+      "predicted": 1
+    }
+  ],
+  "schema_version": 1
+}

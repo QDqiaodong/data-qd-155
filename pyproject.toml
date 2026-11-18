@@ -10,5 +10,6 @@ dependencies = []
 [project.scripts]
 queue-replay = "queue_replay.cli:main"
 queue-planner = "queue_planner.cli:main"
+queue-observe = "queue_observe.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
